@@ -17,3 +17,6 @@ dist/
 
 # Large source photos — replaced by optimized versions in docs/images/
 images/original/
+
+# Stray test artifacts from earlier QR build runs (sandbox couldn't delete)
+docs/qr/raw/test.png
