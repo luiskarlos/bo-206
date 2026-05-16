@@ -1,0 +1,19 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Node / build artifacts (none expected, but defensive)
+node_modules/
+dist/
+.cache/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+
+# Large source photos — replaced by optimized versions in docs/images/
+images/original/
