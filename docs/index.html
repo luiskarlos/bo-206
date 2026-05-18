@@ -44,6 +44,18 @@
       } catch (e) { /* localStorage may be unavailable */ }
     })();
   </script>
+
+  <!-- Google Analytics 4 — reemplazar el Measurement ID placeholder por el real (ver analytics-setup.md) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6F9LL7G9YM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6F9LL7G9YM', {
+      anonymize_ip: true,
+      page_language: 'es'
+    });
+  </script>
 </head>
 <body>
 

@@ -6,14 +6,46 @@
 (function () {
   'use strict';
 
+  // ---------- Analytics helper (safe if gtag missing) ----------
+  function track(eventName, params) {
+    try {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', eventName, params || {});
+      }
+    } catch (e) { /* no-op */ }
+  }
+
   // ---------- Language toggle ----------
   document.querySelectorAll('[data-lang-link]').forEach(function (a) {
     a.addEventListener('click', function () {
-      try { localStorage.setItem('lang', a.getAttribute('data-lang-link')); } catch (e) {}
+      var to = a.getAttribute('data-lang-link');
+      try { localStorage.setItem('lang', to); } catch (e) {}
+      track('language_switch', {
+        to: to,
+        from: document.documentElement.lang || 'es'
+      });
     });
     a.addEventListener('mousedown', function () {
       var base = a.getAttribute('href');
       a.setAttribute('href', base + (location.hash || ''));
+    });
+  });
+
+  // ---------- Contact click tracking (WhatsApp / phone / email) ----------
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    var channel = null;
+    if (/^https?:\/\/(wa\.me|api\.whatsapp\.com)/i.test(href)) channel = 'whatsapp';
+    else if (/^tel:/i.test(href)) channel = 'phone';
+    else if (/^mailto:/i.test(href)) channel = 'email';
+    if (!channel) return;
+    track('contact_click', {
+      channel: channel,
+      link_text: (a.textContent || '').trim().slice(0, 60),
+      link_url: href,
+      page_language: document.documentElement.lang || 'es'
     });
   });
 
@@ -110,6 +142,12 @@
       document.body.style.overflow = 'hidden';
       btnClose.focus();
       document.addEventListener('keydown', onKey);
+      var btn = visibleItems[current];
+      track('gallery_open', {
+        image: btn ? (btn.getAttribute('data-img') || '') : '',
+        room: btn ? (btn.getAttribute('data-room') || '') : '',
+        page_language: document.documentElement.lang || 'es'
+      });
     }
 
     function close() {
