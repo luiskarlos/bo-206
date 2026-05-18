@@ -24,7 +24,7 @@ images/original/     Fotos fuente (no se publican)
 - 2 habitaciones, segundo piso del edificio Bö Escalante.
 - Aire acondicionado en sala y habitación principal.
 - Electrodomésticos (lavadora-secadora, refrigeradora) opcionales — negociable.
-- ₡550.000 / mes sin parqueo · ₡600.000 / mes con parqueo (1 vehículo).
+- ₡535.000 / mes sin parqueo · ₡595.000 / mes con parqueo (1 vehículo, +₡60.000).
 - Tipología base del edificio (~54 m² según el desarrollador).
 
 ## Servir localmente
